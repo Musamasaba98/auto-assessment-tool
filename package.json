@@ -1,11 +1,15 @@
 {
   "name": "auto-assessment-tool",
   "version": "1.0.0",
+  "type": "module",
   "main": "index.js",
   "repository": "https://github.com/Musamasaba98/auto-assessment-tool.git",
   "author": "Masaba Musa",
   "license": "MIT",
   "private": false,
+  "scripts": {
+    "start": "nodemon index.js"
+  },
   "dependencies": {
     "cheerio": "^1.0.0-rc.12",
     "express": "^4.19.2",
