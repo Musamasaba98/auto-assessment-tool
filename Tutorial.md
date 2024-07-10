@@ -20,4 +20,15 @@ This is all about the steps and ideas I may need to note down as i work on the p
        }
    })
    ```
-2.
+2. HTML parse service, to analyse HTML structure of the project
+
+   ```bash
+   import  * as cheerio from "cheerio" //cheerio is deprecated we has to import all as cheerio
+   export const htmlParseService=asyncHandler(async(htmlContent)=>{
+       const $=cheerio.load(htmlContent)
+       const hasHeader=$('header').length>0
+       return {
+           hasHeader,
+       }
+   })
+   ```
