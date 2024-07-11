@@ -2,6 +2,7 @@ async function extractCSSRules(page) {
   const cssRules = await page.evaluate(() => {
     const css = [];
     [...document.styleSheets].forEach((sheet) => {
+      console.log(sheet);
       try {
         const rules = "cssRules" in sheet ? sheet.cssRules : sheet.rules;
         [...rules].forEach((rule) => {

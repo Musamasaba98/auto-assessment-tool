@@ -19,9 +19,8 @@ const fetchService = async (url) => {
     );
     const cssRules = await extractCSSRules(page);
     const htmlContent = await page.content();
-    console.log(cssRules);
     await browser.close();
-    return htmlContent;
+    return { htmlContent, cssRules };
   } catch (error) {
     await browser.close();
     console.error(`Error fetching HTML from ${url}:`, error);

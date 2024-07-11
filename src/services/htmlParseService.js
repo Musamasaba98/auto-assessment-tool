@@ -2,7 +2,7 @@ import * as cheerio from "cheerio";
 
 const htmlParseService = async (htmlContent) => {
   const $ = cheerio.load(htmlContent);
-  console.log($("*").filter((i, el) => $(el).css("display") === "flex").length);
+
   const assessmentResult = {
     hasHeader: $("header").length > 0,
     hasFooter: $("footer").length > 0,
