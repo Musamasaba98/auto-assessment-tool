@@ -2,17 +2,22 @@ import * as cheerio from "cheerio";
 
 const htmlParseService = async (htmlContent) => {
   const $ = cheerio.load(htmlContent);
-  const headerText = $("h1").text();
-  const paragraphText = $("p").text();
-  const imageSrcs = [];
-  $("img").each((i, img) => {
-    imageSrcs.push($(img).attr("src"));
-  });
-  const links = [];
-  $("a").each((i, link) => {
-    links.push($(link).attr("href"));
-  });
-
-  return { headerText, paragraphText, imageSrcs, links };
+  console.log($("*").filter((i, el) => $(el).css("display") === "flex").length);
+  const assessmentResult = {
+    hasHeader: $("header").length > 0,
+    hasFooter: $("footer").length > 0,
+    hasNav: $("nav").length > 0,
+    hasWelcomeSection: $("#welcome").length > 0,
+    hasProjectsSection: $("#projects").length > 0,
+    hasContactSection: $("#contact").length > 0,
+    hasResponsiveImages: $("img[alt]").length > 0,
+    usesGoogleFonts: $('link[href*="fonts.googleapis.com"]').length > 0,
+    usesFlexbox:
+      $("*").filter((i, el) => $(el).css("display") === "flex").length > 0,
+    isResponsive:
+      $('meta[name="viewport"]').attr("content") ===
+      "width=device-width, initial-scale=1",
+  };
+  return assessmentResult;
 };
 export default htmlParseService;
