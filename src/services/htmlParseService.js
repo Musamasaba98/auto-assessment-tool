@@ -1,6 +1,6 @@
 import * as cheerio from "cheerio";
 
-const htmlParseService = async (htmlContent) => {
+const htmlParseService = async (htmlContent, cssRules) => {
   const $ = cheerio.load(htmlContent);
 
   const assessmentResult = {
@@ -18,6 +18,6 @@ const htmlParseService = async (htmlContent) => {
       $('meta[name="viewport"]').attr("content") ===
       "width=device-width, initial-scale=1",
   };
-  return assessmentResult;
+  return { assessmentResult, cssRules };
 };
 export default htmlParseService;

@@ -7,13 +7,16 @@ export const assessProject = asyncHandler(async (req, res) => {
   const { url } = req.body;
   try {
     // const htmlContent = await htmlFetchService(url);
-    const { htmlContent } = await fetchService(url);
+    const { htmlContent, cssRules } = await fetchService(url);
     if (!htmlContent) {
       console.error(`Failed to fetch HTML content from ${url}`);
       return res.status(500).json({ error: "Failed to fetch HTML content" });
     }
-    const assessmentResult = await htmlParseService(htmlContent);
-    console.log(`Assessment Result for ${url}:`, assessmentResult);
+    const { assessmentResult } = await htmlParseService(htmlContent);
+    console.log(`Assessment Result for ${url}:`, {
+      assessmentResult,
+      cssRules,
+    });
     res.send(assessmentResult);
   } catch (error) {
     console.error("Error assessing project:", error);
