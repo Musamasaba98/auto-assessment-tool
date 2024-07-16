@@ -1,6 +1,6 @@
 import * as cheerio from "cheerio";
 
-const htmlParseService = async (htmlContent, cssRules) => {
+const htmlParseService = async (htmlContent) => {
   const $ = cheerio.load(htmlContent);
 
   const assessmentResult = {
@@ -12,12 +12,7 @@ const htmlParseService = async (htmlContent, cssRules) => {
     hasContactSection: $("#contact").length > 0,
     hasResponsiveImages: $("img[alt]").length > 0,
     usesGoogleFonts: $('link[href*="fonts.googleapis.com"]').length > 0,
-    usesFlexbox:
-      $("*").filter((i, el) => $(el).css("display") === "flex").length > 0,
-    isResponsive:
-      $('meta[name="viewport"]').attr("content") ===
-      "width=device-width, initial-scale=1",
   };
-  return { assessmentResult, cssRules };
+  return assessmentResult;
 };
 export default htmlParseService;

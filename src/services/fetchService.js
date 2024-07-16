@@ -1,7 +1,7 @@
 import puppeteer from "puppeteer";
 import { PredefinedNetworkConditions } from "puppeteer";
 import extractCSSRules from "./fetchCssRules.js";
-import extractAllCssFileLinks from "./extractIndirectCssFiles.js";
+// import extractAllCssFileLinks from "./extractIndirectCssFiles.js";
 
 const fetchService = async (url) => {
   const browser = await puppeteer.launch({
@@ -11,7 +11,7 @@ const fetchService = async (url) => {
 
   const page = await browser.newPage();
   try {
-    await extractAllCssFileLinks(page, url);
+    // await extractAllCssFileLinks(page, url);
     await page.coverage.startCSSCoverage();
     let response = await page.goto(url, { waitUntil: "networkidle2" });
     await page.emulateNetworkConditions(fast3G);
